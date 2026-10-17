@@ -28,4 +28,13 @@ public class TaskServiceTest {
                 () -> service.addTask(" ")
         );
     }
+
+    @Test
+    void shouldReturnTaskCount(){
+        TaskService service = new TaskService();
+        service.addTask("service task 1");
+        service.addTask("service task2");
+        assertEquals(2, service.getTaskCount());
+
+    }
 }
