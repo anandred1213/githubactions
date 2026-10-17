@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Allow only develop as source
         run: |
-          if ["${{ github.head_ref }}" != "develop" ]; then
+          if [ "${{ github.head_ref }}" != "develop" ]; then
           echo "ERROR: only PR's from develop to main are allowed."
           exit 1
           fi
