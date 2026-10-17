@@ -50,13 +50,4 @@ public class TaskService {
             throw  new IllegalArgumentException("task not found");
         }
     }
-
-    public void updateTask(Optional<Long> id,String message){
-
-        if (id.isPresent()){
-         Task task = new Task(id.get(),message);
-        }else
-            throw new IllegalArgumentException("id not present");
-
-    }
 }
