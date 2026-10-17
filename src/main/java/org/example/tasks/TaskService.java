@@ -1,6 +1,7 @@
 
 package org.example.tasks;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +48,38 @@ public class TaskService {
                 .count();
     }
 
+    public void deleteTask(Long id) {
+        boolean removed = tasks.removeIf(task -> task.getId().equals(id));
+
+        if (!removed) {
+            throw new IllegalArgumentException("task not found");
+        }
+    }
+
+    public Task updateTask(Long id, String newTitle) {
+        if (newTitle == null || newTitle.isBlank()) {
+            throw new IllegalArgumentException("Task title cannot be empty");
+        }
+
+        Task task = tasks.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Task not found"));
+
+        // Create an updated task with the same ID
+        Task updatedTask = new Task(id, newTitle);
+
+        if (task.isCompleted()) {
+            updatedTask.markCompleted();
+        }
+
+        tasks.set(tasks.indexOf(task), updatedTask);
+
+        return updatedTask;
+    }
+
+
 }
+
+
 
