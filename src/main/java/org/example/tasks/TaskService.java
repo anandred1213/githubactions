@@ -1,8 +1,11 @@
 
 package org.example.tasks;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalLong;
 
 public class TaskService {
 
@@ -38,5 +41,22 @@ public class TaskService {
     }
     public int getTaskCount(){
         return tasks.size();
+    }
+
+    public void deleteTask(Long id){
+        boolean removed = tasks.removeIf(task -> task.getId().equals(id));
+
+        if(!removed){
+            throw  new IllegalArgumentException("task not found");
+        }
+    }
+
+    public void updateTask(Optional<Long> id,String message){
+
+        if (id.isPresent()){
+         Task task = new Task(id.get(),message);
+        }else
+            throw new IllegalArgumentException("id not present");
+
     }
 }
