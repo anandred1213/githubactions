@@ -37,4 +37,19 @@ public class TaskServiceTest {
         assertEquals(2, service.getTaskCount());
 
     }
+
+    @Test
+    void shouldReturnCompletedTaskCount() {
+        TaskService service = new TaskService();
+
+        Task task1 = service.addTask("Learn GitHub Actions");
+        service.addTask("Practice Git branches");
+        Task task3 = service.addTask("Learn workflow conditions");
+
+        service.completeTask(task1.getId());
+        service.completeTask(task3.getId());
+
+        assertEquals(2, service.getCompletedTaskCount());
+    }
+
 }
