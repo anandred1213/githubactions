@@ -1,0 +1,27 @@
+
+name: condition-demo
+
+on:
+  push:
+    branches:
+      - develop
+      - 'feature/**'
+
+jobs:
+  demonstrate-condition:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show workflow event
+        run: |
+          echo "Event: $GITHUB_EVENT_NAME"
+
+      - name: Run only on develop
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          echo "This step runs on develop"
+
+      - name: Run only on feature branches
+        if: startsWith(github.ref, 'refs/heads/feature/')
+        run: |
+          echo "This step runs on a feature branch"

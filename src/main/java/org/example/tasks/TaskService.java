@@ -79,6 +79,13 @@ public class TaskService {
     }
 
 
+    public long getCompletedTaskCount() {
+        return tasks.stream()
+                .filter(Task::isCompleted)
+                .count();
+    }
+
+
 }
 
 
