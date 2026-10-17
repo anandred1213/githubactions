@@ -39,4 +39,12 @@ public class TaskService {
     public int getTaskCount(){
         return tasks.size();
     }
+
+    public void deleteTask(Long id){
+        boolean removed = tasks.removeIf(task -> task.getId().equals(id));
+
+        if(!removed){
+            throw  new IllegalArgumentException("task not found");
+        }
+    }
 }
