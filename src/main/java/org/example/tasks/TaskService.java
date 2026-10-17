@@ -39,4 +39,13 @@ public class TaskService {
     public int getTaskCount(){
         return tasks.size();
     }
+
+
+    public long getPendingTaskCount() {
+        return tasks.stream()
+                .filter(task -> !task.isCompleted())
+                .count();
+    }
+
 }
+
