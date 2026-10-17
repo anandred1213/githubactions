@@ -1,0 +1,20 @@
+name: Pr_branch_Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-source-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Allow only develop as source
+        run: |
+          if ["${{ github.head_ref }}" != "develop" ]; then
+          echo "ERROR: only PR's from develop to main are allowed."
+          exit 1
+          fi
+          
+          echo "source branch is develop. Validation passed."
