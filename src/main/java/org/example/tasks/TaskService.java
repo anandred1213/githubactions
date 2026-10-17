@@ -77,7 +77,9 @@ public class TaskService {
 
         return updatedTask;
     }
-
+    public void printMessage(){
+        System.out.println("print message");
+    }
 
 }
 
