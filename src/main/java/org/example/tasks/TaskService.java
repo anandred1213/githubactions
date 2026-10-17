@@ -36,4 +36,7 @@ public class TaskService {
 
         task.markCompleted();
     }
+    public int getTaskCount(){
+        return tasks.size();
+    }
 }
