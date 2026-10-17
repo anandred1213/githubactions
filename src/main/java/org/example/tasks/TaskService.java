@@ -81,6 +81,13 @@ public class TaskService {
         System.out.println("print message");
     }
 
+    public long getCompletedTaskCount() {
+        return tasks.stream()
+                .filter(Task::isCompleted)
+                .count();
+    }
+
+
 }
 
 
