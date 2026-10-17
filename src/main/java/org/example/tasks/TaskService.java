@@ -1,11 +1,9 @@
 
 package org.example.tasks;
 
-import javax.swing.text.html.Option;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalLong;
 
 public class TaskService {
 
@@ -43,6 +41,13 @@ public class TaskService {
         return tasks.size();
     }
 
+
+    public long getPendingTaskCount() {
+        return tasks.stream()
+                .filter(task -> !task.isCompleted())
+                .count();
+    }
+
     public void deleteTask(Long id) {
         boolean removed = tasks.removeIf(task -> task.getId().equals(id));
 
@@ -75,3 +80,6 @@ public class TaskService {
 
 
 }
+
+
+
